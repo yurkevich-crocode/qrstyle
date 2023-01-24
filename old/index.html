@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"
+    ></script>
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
@@ -13,7 +16,12 @@
       <div class="global-wrapper">
         <div class="canvas__wrapper">
           <div id="canvas" class="canvas__border"></div>
-          <input type="button" value="Save" id="savebtn" class="custom__btn" />
+          <input
+            type="button"
+            value="Save QR-code"
+            id="savebtn"
+            class="custom__btn"
+          />
         </div>
         <div class="wrapper">
           <div class="custom__custom-item-option">
@@ -30,15 +38,51 @@
                   id="Logo"
                   class="FileUpload"
                   onchange="handleFileSelect(this) "
-                  accept=".webm,.png,.jpeg,.svg" />
-                <div class="dropZoneOverlay">Select image<br />(svg,png,webm,jpeg)</div>
+                  accept=".webm,.png,.jpeg,.svg"
+                />
+                <div class="dropZoneOverlay">
+                  <div class="drop__wrapper">
+                    <div class="drop__icon">
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M40 20C40 31.0457 31.0457 40 20 40C8.95431 40 0 31.0457 0 20C0 8.95431 8.95431 0 20 0C31.0457 0 40 8.95431 40 20ZM10.5858 16.5858L18.5858 8.58579C19.3668 7.80474 20.6332 7.80474 21.4142 8.58579L29.4142 16.5858C30.1953 17.3668 30.1953 18.6332 29.4142 19.4142C28.6332 20.1953 27.3668 20.1953 26.5858 19.4142L22 14.8284V30C22 31.1046 21.1046 32 20 32C18.8954 32 18 31.1046 18 30V14.8284L13.4142 19.4142C12.6332 20.1953 11.3668 20.1953 10.5858 19.4142C9.80474 18.6332 9.80474 17.3668 10.5858 16.5858Z"
+                          fill="#5C5F62"
+                        />
+                      </svg>
+                    </div>
+                    <button class="drop__button">Add file</button>
+                  </div>
+                  or drop files to upload
+                </div>
               </div>
             </div>
             <div class="custom__item">
               <label for="width">width</label>
-              <input type="number" id="width" step="50" value="250" min="200" max="1000" />
+              <input
+                type="number"
+                id="width"
+                step="50"
+                value="250"
+                min="200"
+                max="1000"
+              />
               <label for="height">height</label>
-              <input type="number" id="height" step="50" value="250" min="200" max="1000" />
+              <input
+                type="number"
+                id="height"
+                step="50"
+                value="250"
+                min="200"
+                max="1000"
+              />
             </div>
             <div class="custom__item">
               <label for="margin">margin</label>
@@ -58,6 +102,62 @@
                 <option value="extra-rounded">Extra-rounded</option>
               </select>
             </div>
+            <div class="forms__wrappper">
+              <div class="forms__item active" data-type="square">
+                <div class="forms__image-wrapper">
+                  <img
+                    src="upload/загрузка.png"
+                    alt="square"
+                    class="forms__image"
+                  />
+                </div>
+              </div>
+              <div class="forms__item" data-type="dots">
+                <div class="forms__image-wrapper">
+                  <img
+                    src="upload/загрузка (1).png"
+                    alt="rounded"
+                    class="forms__image"
+                  />
+                </div>
+              </div>
+              <div class="forms__item" data-type="rounded">
+                <div class="forms__image-wrapper">
+                  <img
+                    src="upload/загрузка (2).png"
+                    alt="classy"
+                    class="forms__image"
+                  />
+                </div>
+              </div>
+              <div class="forms__item" data-type="classy">
+                <div class="forms__image-wrapper">
+                  <img
+                    src="upload/загрузка (3).png"
+                    alt="classy-rounded"
+                    class="forms__image"
+                  />
+                </div>
+              </div>
+              <div class="forms__item" data-type="classy-rounded">
+                <div class="forms__image-wrapper">
+                  <img
+                    src="upload/загрузка (4).png"
+                    alt="extra-rounded"
+                    class="forms__image"
+                  />
+                </div>
+              </div>
+              <div class="forms__item" data-type="extra-rounded">
+                <div class="forms__image-wrapper">
+                  <img
+                    src="upload/загрузка (5).png"
+                    alt=""
+                    class="forms__image"
+                  />
+                </div>
+              </div>
+            </div>
             <div class="custom__item">
               <input type="radio" name="dotsColor" id="sDotsColor" checked />
               <label for="sDotsColor">Single color</label>
@@ -69,9 +169,18 @@
               <input type="color" id="cpicker1" />
               <input type="color" id="cpicker2" />
               <label for="rotate" id="forRotate">Rotate</label>
-              <input type="number" name="rotate" id="rotate" value="0" min="0" max="360" />
+              <input
+                type="number"
+                name="rotate"
+                id="rotate"
+                value="0"
+                min="0"
+                max="360"
+              />
             </div>
-            <p class="custom__item-alert custom__item-alert--dots">We recommend to make your color darker</p>
+            <p class="custom__item-alert custom__item-alert--dots">
+              We recommend to make your color darker
+            </p>
           </div>
           <div class="custom__custom-item-option">
             <h2 class="custom__custom-title">Corners Square Options</h2>
@@ -85,7 +194,12 @@
               </select>
             </div>
             <div class="custom__item">
-              <input type="radio" name="cornSquareColor" id="sCorSquareColor" checked />
+              <input
+                type="radio"
+                name="cornSquareColor"
+                id="sCorSquareColor"
+                checked
+              />
               <label for="sCorSquareColor">Single color</label>
 
               <input type="radio" name="cornSquareColor" id="gCorSquareColor" />
@@ -96,7 +210,9 @@
               <input type="color" id="squarecpicker1" />
               <input type="color" id="squarecpicker2" />
             </div>
-            <p class="custom__item-alert custom__item-alert--corners-square">We recommend to make your color darker</p>
+            <p class="custom__item-alert custom__item-alert--corners-square">
+              We recommend to make your color darker
+            </p>
           </div>
           <div class="custom__custom-item-option">
             <h2 class="custom__custom-title">Corners Dot Options</h2>
@@ -109,7 +225,12 @@
               </select>
             </div>
             <div class="custom__item">
-              <input type="radio" name="cornDotColor" id="sCornDotColor" checked />
+              <input
+                type="radio"
+                name="cornDotColor"
+                id="sCornDotColor"
+                checked
+              />
               <label for="sCornDotColor">Single color</label>
 
               <input type="radio" name="cornDotColor" id="gCornDotColor" />
@@ -120,14 +241,15 @@
               <input type="color" id="dotscpicker" />
               <input type="color" id="dotscpicker2" />
             </div>
-            <p class="custom__item-alert custom__item-alert--corners-dots">We recommend to make your color darker</p>
+            <p class="custom__item-alert custom__item-alert--corners-dots">
+              We recommend to make your color darker
+            </p>
           </div>
           <div class="custom__custom-item-option">
             <h2 class="custom__custom-title">Background Style</h2>
             <div class="custom__item">
               <input type="radio" name="backColor" id="sBackColor" checked />
               <label for="sBackColor">Single color</label>
-
               <input type="radio" name="backColor" id="gBackColor" />
               <label for="gBackColor">Gradient color</label>
             </div>
@@ -144,7 +266,13 @@
             <h2 class="custom__custom-title">Image Style</h2>
             <div class="custom__item">
               <label for="marginImage">Margin</label>
-              <input type="number" id="marginImage" value="5" min="0" max="10" />
+              <input
+                type="number"
+                id="marginImage"
+                value="5"
+                min="0"
+                max="10"
+              />
             </div>
           </div>
         </div>
