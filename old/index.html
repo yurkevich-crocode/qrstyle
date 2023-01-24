@@ -4,140 +4,152 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.js"></script>
     <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
   <body>
-    <div id="canvas"></div>
-    <div class="wrapper">
-      <div class="custom__custom-item-option">
-        <h2 class="custom__custom-title">Main Options</h2>
-        <div class="custom__item">
-          <label for="link">Link</label>
-          <input type="text" id="link" value="https://vk.com/dan.yurkevich" />
+    <div class="container">
+      <div class="global-wrapper">
+        <div class="canvas__wrapper">
+          <div id="canvas" class="canvas__border"></div>
+          <input type="button" value="Save" id="savebtn" class="custom__btn" />
         </div>
-        <div class="custom__item">
-          <label for="Logo">Logo</label>
-          <input type="file" id="Logo" />
-        </div>
+        <div class="wrapper">
+          <div class="custom__custom-item-option">
+            <h2 class="custom__custom-title">Main Options</h2>
+            <div class="custom__item">
+              <label for="link">Link</label>
+              <input type="text" id="link" value="https://crocode.io/" />
+            </div>
+            <div class="custom__item">
+              <label for="Logo">Logo</label>
+              <div class="dropZoneContainer">
+                <input
+                  type="file"
+                  id="Logo"
+                  class="FileUpload"
+                  onchange="handleFileSelect(this) "
+                  accept=".webm,.png,.jpeg,.svg" />
+                <div class="dropZoneOverlay">Select image<br />(svg,png,webm,jpeg)</div>
+              </div>
+            </div>
+            <div class="custom__item">
+              <label for="width">width</label>
+              <input type="number" id="width" step="50" value="250" min="200" max="1000" />
+              <label for="height">height</label>
+              <input type="number" id="height" step="50" value="250" min="200" max="1000" />
+            </div>
+            <div class="custom__item">
+              <label for="margin">margin</label>
+              <input type="number" id="margin" value="0" min="0" max="50" />
+            </div>
+          </div>
+          <div class="custom__custom-item-option">
+            <h2 class="custom__custom-title">Dots Options</h2>
+            <div class="custom__item">
+              <label for="dotsStyleSelect">Dots Style</label>
+              <select name="test" id="dotsStyleSelect">
+                <option value="square">Square</option>
+                <option value="dots">Dots</option>
+                <option value="rounded">Rounded</option>
+                <option value="classy">Classy</option>
+                <option value="classy-rounded">Classy-rounded</option>
+                <option value="extra-rounded">Extra-rounded</option>
+              </select>
+            </div>
+            <div class="custom__item">
+              <input type="radio" name="dotsColor" id="sDotsColor" checked />
+              <label for="sDotsColor">Single color</label>
+              <input type="radio" name="dotsColor" id="gDotsColor" />
+              <label for="gDotsColor">Gradient color</label>
+            </div>
+            <div class="custom__item">
+              <label for="cpicker1">Dots Color</label>
+              <input type="color" id="cpicker1" />
+              <input type="color" id="cpicker2" />
+              <label for="rotate" id="forRotate">Rotate</label>
+              <input type="number" name="rotate" id="rotate" value="0" min="0" max="360" />
+            </div>
+            <p class="custom__item-alert custom__item-alert--dots">We recommend to make your color darker</p>
+          </div>
+          <div class="custom__custom-item-option">
+            <h2 class="custom__custom-title">Corners Square Options</h2>
+            <div class="custom__item">
+              <label for="cornersSquareStyleSelect">Corners Square Style</label>
+              <select name="test" id="cornersSquareStyleSelect">
+                <option value="">None</option>
+                <option value="square">Square</option>
+                <option value="dot">Dot</option>
+                <option value="extra-rounded">Extra-rounded</option>
+              </select>
+            </div>
+            <div class="custom__item">
+              <input type="radio" name="cornSquareColor" id="sCorSquareColor" checked />
+              <label for="sCorSquareColor">Single color</label>
 
-        <div class="custom__item">
-          <label for="width">width</label>
-          <input type="number" id="width" value="250" step="50" />
-          <label for="height">height</label>
-          <input type="number" id="height" value="250" step="50" />
-        </div>
-        <div class="custom__item">
-          <label for="margin">margin</label>
-          <input type="number" id="margin" value="0" />
-        </div>
-      </div>
-      <div class="custom__custom-item-option">
-        <h2 class="custom__custom-title">Dots Options</h2>
-        <div class="custom__item">
-          <label for="dotsStyleSelect">Dots Style</label>
-          <select name="test" id="dotsStyleSelect">
-            <option value="square">Square</option>
-            <option value="dots">Dots</option>
-            <option value="rounded">Rounded</option>
-            <option value="classy">Classy</option>
-            <option value="classy-rounded">Classy-rounded</option>
-            <option value="extra-rounded">Extra-rounded</option>
-          </select>
-        </div>
-        <div class="custom__item">
-          <input type="radio" name="dotsColor" id="sDotsColor" checked />
-          <label for="sDotsColor">Single color</label>
-          <input type="radio" name="dotsColor" id="gDotsColor" />
-          <label for="gDotsColor">Gradient color</label>
-        </div>
-        <div class="custom__item">
-          <label for="cpicker1">Dots Color</label>
-          <input type="color" id="cpicker1" />
-          <input type="color" id="cpicker2" />
-          <label for="rotate" id="forRotate">Rotate</label>
-          <input type="number" name="rotate" id="rotate" value="0" />
-        </div>
-        <p class="custom__item-alert custom__item-alert--dots">We recommend to make your color darker</p>
-      </div>
-      <div class="custom__custom-item-option">
-        <h2 class="custom__custom-title">Corners Square Options</h2>
-        <div class="custom__item">
-          <label for="cornersSquareStyleSelect">Corners Square Style</label>
-          <select name="test" id="cornersSquareStyleSelect">
-            <option value="">None</option>
-            <option value="square">Square</option>
-            <option value="dot">Dot</option>
-            <option value="extra-rounded">Extra-rounded</option>
-          </select>
-        </div>
-        <div class="custom__item">
-          <input type="radio" name="cornSquareColor" id="sCorSquareColor" checked />
-          <label for="sCorSquareColor">Single color</label>
+              <input type="radio" name="cornSquareColor" id="gCorSquareColor" />
+              <label for="gCorSquareColor">Gradient color</label>
+            </div>
+            <div class="custom__item">
+              <label for="squarecpicker1">Corners Square Color</label>
+              <input type="color" id="squarecpicker1" />
+              <input type="color" id="squarecpicker2" />
+            </div>
+            <p class="custom__item-alert custom__item-alert--corners-square">We recommend to make your color darker</p>
+          </div>
+          <div class="custom__custom-item-option">
+            <h2 class="custom__custom-title">Corners Dot Options</h2>
+            <div class="custom__item">
+              <label for="cornersDotStyleSelect">Corners Dot Style</label>
+              <select name="test" id="cornersDotStyleSelect">
+                <option value="">None</option>
+                <option value="square">Square</option>
+                <option value="dot">Dot</option>
+              </select>
+            </div>
+            <div class="custom__item">
+              <input type="radio" name="cornDotColor" id="sCornDotColor" checked />
+              <label for="sCornDotColor">Single color</label>
 
-          <input type="radio" name="cornSquareColor" id="gCorSquareColor" />
-          <label for="gCorSquareColor">Gradient color</label>
-        </div>
-        <div class="custom__item">
-          <label for="squarecpicker1">Corners Square Color</label>
-          <input type="color" id="squarecpicker1" />
-          <input type="color" id="squarecpicker2" />
-        </div>
-        <p class="custom__item-alert custom__item-alert--corners-square">We recommend to make your color darker</p>
-      </div>
-      <div class="custom__custom-item-option">
-        <h2 class="custom__custom-title">Corners Dot Options</h2>
-        <div class="custom__item">
-          <label for="cornersDotStyleSelect">Corners Dot Style</label>
-          <select name="test" id="cornersDotStyleSelect">
-            <option value="">None</option>
-            <option value="square">Square</option>
-            <option value="dot">Dot</option>
-          </select>
-        </div>
-        <div class="custom__item">
-          <input type="radio" name="cornDotColor" id="sCornDotColor" checked />
-          <label for="sCornDotColor">Single color</label>
+              <input type="radio" name="cornDotColor" id="gCornDotColor" />
+              <label for="gCornDotColor">Gradient color</label>
+            </div>
+            <div class="custom__item">
+              <label for="dotscpicker">Corners Square Color</label>
+              <input type="color" id="dotscpicker" />
+              <input type="color" id="dotscpicker2" />
+            </div>
+            <p class="custom__item-alert custom__item-alert--corners-dots">We recommend to make your color darker</p>
+          </div>
+          <div class="custom__custom-item-option">
+            <h2 class="custom__custom-title">Background Style</h2>
+            <div class="custom__item">
+              <input type="radio" name="backColor" id="sBackColor" checked />
+              <label for="sBackColor">Single color</label>
 
-          <input type="radio" name="cornDotColor" id="gCornDotColor" />
-          <label for="gCornDotColor">Gradient color</label>
-        </div>
-        <div class="custom__item">
-          <label for="dotscpicker">Corners Square Color</label>
-          <input type="color" id="dotscpicker" />
-          <input type="color" id="dotscpicker2" />
-        </div>
-        <p class="custom__item-alert custom__item-alert--corners-dots">We recommend to make your color darker</p>
-      </div>
-      <div class="custom__custom-item-option">
-        <h2 class="custom__custom-title">Background Style</h2>
-        <div class="custom__item">
-          <input type="radio" name="backColor" id="sBackColor" checked />
-          <label for="sBackColor">Single color</label>
-
-          <input type="radio" name="backColor" id="gBackColor" />
-          <label for="gBackColor">Gradient color</label>
-        </div>
-        <div class="custom__item">
-          <label for="backcpicker">Background Color</label>
-          <input type="color" id="backcpicker" value="#ffffff" />
-          <input type="color" id="backcpicker2" value="#ffffff" />
-        </div>
-        <p class="custom__item-alert custom__item-alert--background">
-          Make sure there is enough contrast to the darker foreground.
-        </p>
-      </div>
-      <div class="custom__custom-item-option">
-        <h2 class="custom__custom-title">Image Style</h2>
-        <div class="custom__item">
-          <label for="marginImage">Margin</label>
-          <input type="number" id="marginImage" value="5" />
+              <input type="radio" name="backColor" id="gBackColor" />
+              <label for="gBackColor">Gradient color</label>
+            </div>
+            <div class="custom__item">
+              <label for="backcpicker">Background Color</label>
+              <input type="color" id="backcpicker" value="#ffffff" />
+              <input type="color" id="backcpicker2" value="#ffffff" />
+            </div>
+            <p class="custom__item-alert custom__item-alert--background">
+              Make sure there is enough contrast to the darker foreground.
+            </p>
+          </div>
+          <div class="custom__custom-item-option">
+            <h2 class="custom__custom-title">Image Style</h2>
+            <div class="custom__item">
+              <label for="marginImage">Margin</label>
+              <input type="number" id="marginImage" value="5" min="0" max="10" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <input type="button" value="save" id="savebtn" />
     <script type="module" src="qrcode.js"></script>
   </body>
 </html>
