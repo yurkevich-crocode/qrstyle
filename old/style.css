@@ -28,6 +28,13 @@
   font-display: swap;
 }
 
+* {
+  font-family: "SF Pro Display";
+  transition: 0.4s ease;
+  font-size: 14px;
+  line-height: 20px;
+}
+
 body {
   background-color: #f6f6f7;
 }
@@ -83,14 +90,8 @@ body {
 
 .canvas__border {
   border: 1px solid rgba(153, 150, 150, 0.348);
-  border-radius: 5px;
+  border-radius: 8px;
   overflow: hidden;
-}
-
-* {
-  font-family: "SF Pro Display";
-  transition: 0.4s ease;
-  line-height: 20px;
 }
 
 .global-wrapper {
@@ -110,9 +111,10 @@ body {
   flex-direction: column;
   gap: 20px;
   border: 1px solid #babfc3;
-  border-radius: 5px;
   height: max-content;
   padding: 46px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 #canvas canvas {
@@ -122,6 +124,7 @@ body {
   max-height: 250px !important;
   object-fit: cover;
   width: 100%;
+  overflow: hidden;
 }
 
 @media (min-width: 992px) {
@@ -131,6 +134,7 @@ body {
     z-index: 10;
   }
 }
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -139,24 +143,34 @@ body {
   padding-bottom: 20px;
 }
 
+.custom__inline-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 40px;
+}
+
 .custom__item {
   transition: 0.4s ease;
   display: flex;
+  width: max-content;
+  flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 20px;
+  gap: 5px;
 }
 
-@media (min-width: 991px) {
-  .custom__item {
-    width: 620px;
-  }
+.custom__item-inline {
+  flex-direction: row;
+  transition: 0.4s ease;
+  display: flex;
+  width: max-content;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .custom__item-alert {
   display: none;
   color: rgb(255, 166, 0);
-  font-size: 20px;
 }
 
 .custom__btn:focus {
@@ -219,7 +233,7 @@ select {
 input[type="number"],
 input[type="text"],
 select {
-  padding: 8px 12px;
+  padding: 6px 12px;
   background: #ffffff;
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
@@ -246,7 +260,7 @@ input#link {
 }
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 
 .dropZoneContainer {
@@ -277,8 +291,6 @@ input#link {
   border: 2px dotted #8c9196;
   border-radius: 5px;
   color: #6d7175;
-  font-weight: 400;
-  font-size: 14px;
   background-color: #ffffff;
   position: absolute;
   text-align: center;
@@ -302,6 +314,7 @@ input#link {
 
 .custom__custom-title {
   margin: 0;
+  font-size: 28px;
 }
 
 .forms__wrappper {
@@ -318,23 +331,35 @@ input#link {
   height: 100px;
 }
 
+.forms__item-corndot .forms__image-wrapper,
+.forms__item-square .forms__image-wrapper {
+  width: 75px;
+  height: 75px;
+}
+
 .forms__image {
   object-fit: cover;
   width: 90%;
   height: 90%;
 }
 
-.forms__item {
+.forms__item,
+.forms__item-corndot,
+.forms__item-square {
   border: 1px solid #babfc3;
   border-radius: 10px;
 }
 
-.forms__item.active {
+.forms__item.active,
+.forms__item-corndot.active,
+.forms__item-square.active {
   border: 1px solid green;
   position: relative;
 }
 
-.forms__item.active::before {
+.forms__item.active::before,
+.forms__item-corndot.active::before,
+.forms__item-square.active::before {
   content: "";
   width: 100%;
   height: 100%;
@@ -343,11 +368,13 @@ input#link {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: rgb(44, 192, 27);
-  opacity: 0.2;
+  background-color: #008060;
+  opacity: 0.25;
 }
 
-.forms__item.active .forms__image-wrapper {
+.forms__item.active .forms__image-wrapper,
+.forms__item-corndot.active .forms__image-wrapper,
+.forms__item-square.active .forms__image-wrapper {
   position: relative;
   z-index: 1;
 }
@@ -358,7 +385,6 @@ input#link {
   border-radius: 5px;
   background-color: #008060;
   padding: 8px;
-  font-size: 14px;
   cursor: pointer;
   color: #fff;
   transition: 0.4s ease;

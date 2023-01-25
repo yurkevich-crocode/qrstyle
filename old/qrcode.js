@@ -47,6 +47,7 @@ class QrCode {
 
   generateQR() {
     let colorPickerSec = document.getElementById("cpicker2");
+    let hidden__el = document.querySelectorAll(".hidden__el");
     let radioFirst = document.getElementById("sDotsColor");
     let radioSecond = document.getElementById("gDotsColor");
     const rotate = document.getElementById("rotate");
@@ -56,18 +57,27 @@ class QrCode {
       colorPickerSec.classList.add("hidden");
       rotate.classList.add("hidden");
       labelForRotate.classList.add("hidden");
+      hidden__el.forEach((item) => {
+        item.classList.add("hidden");
+      });
     }
 
     radioFirst.addEventListener("click", () => {
       colorPickerSec.classList.add("hidden");
       rotate.classList.add("hidden");
       labelForRotate.classList.add("hidden");
+      hidden__el.forEach((item) => {
+        item.classList.add("hidden");
+      });
     });
 
     radioSecond.addEventListener("click", () => {
       colorPickerSec.classList.remove("hidden");
       rotate.classList.remove("hidden");
       labelForRotate.classList.remove("hidden");
+      hidden__el.forEach((item) => {
+        item.classList.remove("hidden");
+      });
     });
     //==================
 
@@ -76,17 +86,27 @@ class QrCode {
     let colorPickerSecSquare = document.getElementById("squarecpicker2");
     let radioFirstSquare = document.getElementById("sCorSquareColor");
     let radioSecondSquare = document.getElementById("gCorSquareColor");
+    let hidden__elSquare = document.querySelectorAll(".hidden__el-square");
 
     if (radioFirstSquare.checked) {
       colorPickerSecSquare.classList.add("hidden");
+      hidden__elSquare.forEach((item) => {
+        item.classList.add("hidden");
+      });
     }
 
     radioFirstSquare.addEventListener("click", () => {
       colorPickerSecSquare.classList.add("hidden");
+      hidden__elSquare.forEach((item) => {
+        item.classList.add("hidden");
+      });
     });
 
     radioSecondSquare.addEventListener("click", () => {
       colorPickerSecSquare.classList.remove("hidden");
+      hidden__elSquare.forEach((item) => {
+        item.classList.remove("hidden");
+      });
     });
     //==================
 
@@ -95,17 +115,26 @@ class QrCode {
     let colorPickerSecDotsCorners = document.getElementById("dotscpicker2");
     let radioFirstDotsCorners = document.getElementById("sCornDotColor");
     let radioSecondDotsCorners = document.getElementById("gCornDotColor");
-
+    let hidden__elDot = document.querySelectorAll(".hidden__el-dot");
     if (radioFirstDotsCorners.checked) {
       colorPickerSecDotsCorners.classList.add("hidden");
+      hidden__elDot.forEach((item) => {
+        item.classList.add("hidden");
+      });
     }
 
     radioFirstDotsCorners.addEventListener("click", () => {
       colorPickerSecDotsCorners.classList.add("hidden");
+      hidden__elDot.forEach((item) => {
+        item.classList.add("hidden");
+      });
     });
 
     radioSecondDotsCorners.addEventListener("click", () => {
       colorPickerSecDotsCorners.classList.remove("hidden");
+      hidden__elDot.forEach((item) => {
+        item.classList.remove("hidden");
+      });
     });
     //==================
 
@@ -114,28 +143,35 @@ class QrCode {
     let colorPickerBackSec = document.getElementById("backcpicker2");
     let radioFirstBack = document.getElementById("sBackColor");
     let radioSecondBack = document.getElementById("gBackColor");
-
+    let hidden__elBack = document.querySelectorAll(".hidden__el-back");
     if (radioFirstBack.checked) {
       colorPickerBackSec.classList.add("hidden");
+      hidden__elBack.forEach((item) => {
+        item.classList.add("hidden");
+      });
     }
 
     radioFirstBack.addEventListener("click", () => {
       colorPickerBackSec.classList.add("hidden");
+      hidden__elBack.forEach((item) => {
+        item.classList.add("hidden");
+      });
     });
 
     radioSecondBack.addEventListener("click", () => {
       colorPickerBackSec.classList.remove("hidden");
+      hidden__elBack.forEach((item) => {
+        item.classList.remove("hidden");
+      });
     });
     if (document.getElementById("canvas")) {
       //main setings
       //==================
 
-      // const canvas = document.getElementById('canvas');
       const link = document.getElementById("link").value;
       let margin = document.getElementById("margin").value;
       const width = document.getElementById("width").value;
       const height = document.getElementById("height").value;
-      // canvas.style.width = `${width.toString()}px`;
 
       if (margin <= 20) {
         margin = 20;
@@ -161,7 +197,6 @@ class QrCode {
       //==================
 
       const colorDots1 = document.getElementById("cpicker1").value;
-      const selectDotsStyle = document.getElementById("dotsStyleSelect");
       const dotsAlert = document.querySelector(".custom__item-alert--dots");
       const colorDotsVal1 = colorDots1.toString();
       let colorDotsVal2 = colorPickerSec.value.toString();
@@ -190,9 +225,6 @@ class QrCode {
       //corners square
       //==================
       const cornersSquare = document.getElementById("squarecpicker1").value;
-      const selectCornersSquareStyle = document.getElementById(
-        "cornersSquareStyleSelect"
-      );
       const colorCorSquareVal = cornersSquare.toString();
       const cornersSquareAlert = document.querySelector(
         ".custom__item-alert--corners-square"
@@ -223,9 +255,6 @@ class QrCode {
       //corners dots
       //==================
       const cornersDots = document.getElementById("dotscpicker").value;
-      const cornersDotStyleSelect = document.getElementById(
-        "cornersDotStyleSelect"
-      );
       const colorCorDotsVal = cornersDots.toString();
       const cornersDotsAlert = document.querySelector(
         ".custom__item-alert--corners-dots"
@@ -284,7 +313,13 @@ class QrCode {
 
       //==================
 
-      //image
+      //image:TODO:
+      //   let imagestyle = document.querySelector(".image-style");
+      // {
+      //   if (image == "") {
+      //     imagestyle.classList.add("hidden");
+      //   }
+      // }
       //==================
 
       //==================
@@ -325,7 +360,7 @@ class QrCode {
           },
         },
         cornersSquareOptions: {
-          type: selectCornersSquareStyle.value,
+          type: cornesrsSquareType,
           gradient: {
             type: "linear",
             rotation: rotate.value * (Math.PI / 180),
@@ -336,7 +371,7 @@ class QrCode {
           },
         },
         cornersDotOptions: {
-          type: cornersDotStyleSelect.value,
+          type: cornersDotType,
           gradient: {
             type: "linear",
             rotation: rotate.value * (Math.PI / 180),
@@ -376,23 +411,14 @@ class QrCode {
     }, 5000);
   }
 
-  getType() {
-    const formItems = document.querySelectorAll(".forms__item");
-    formItems.forEach((item) => {
-      item.addEventListener("click", (e) => {
-        dataType = item.dataset.type;
-        formItems.forEach((el) => {
-          el.classList.remove("active");
-        });
-        item.classList.add("active");
-        return dataType;
-      });
-    });
-  }
-
   getInputs() {
     const inputs = document.getElementsByTagName("input");
     const selects = document.getElementsByTagName("select");
+    const formItems = document.querySelectorAll(".forms__item");
+    const cornesrsSquareItems = document.querySelectorAll(
+      ".forms__item-square"
+    );
+    const cornesrsDotsItems = document.querySelectorAll(".forms__item-corndot");
 
     for (let input in inputs) {
       if (inputs.hasOwnProperty(input)) {
@@ -409,6 +435,39 @@ class QrCode {
         });
       }
     }
+
+    formItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        formItems.forEach((el) => {
+          el.classList.remove("active");
+        });
+        item.classList.add("active");
+        dataType = item.dataset.type;
+        qr.generateQR();
+      });
+    });
+
+    cornesrsSquareItems.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        cornesrsSquareItems.forEach((el) => {
+          el.classList.remove("active");
+        });
+        item.classList.add("active");
+        cornesrsSquareType = item.dataset.type;
+        qr.generateQR();
+      });
+    });
+
+    cornesrsDotsItems.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        cornesrsDotsItems.forEach((el) => {
+          el.classList.remove("active");
+        });
+        item.classList.add("active");
+        cornersDotType = item.dataset.type;
+        qr.generateQR();
+      });
+    });
   }
 
   init() {
@@ -416,9 +475,6 @@ class QrCode {
       this.generateQR();
       this.updateImg();
       this.getInputs();
-      this.getType();
-
-      console.log(this.getType());
     });
   }
 }
@@ -429,6 +485,8 @@ qr.init();
 
 let image = "";
 let dataType;
+let cornersDotType;
+let cornesrsSquareType;
 let globalQr;
 let glWidth;
 let glHeight;
