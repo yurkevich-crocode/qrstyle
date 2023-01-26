@@ -9,10 +9,16 @@
       src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"
     ></script>
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
     <title>QR-code | Crocode</title>
   </head>
-  <body>
+  <body id="body">
+    <div class="modal">
+      <div class="modal__wrapper">
+        <h2 class="modal__title">Tariff plan</h2>
+        <div class="modal__table"></div>
+      </div>
+    </div>
     <div class="container">
       <div class="global-wrapper">
         <div class="canvas__wrapper">
@@ -23,10 +29,16 @@
             id="savebtn"
             class="custom__btn"
           />
+          <input
+            type="button"
+            value="Show Tariff plan"
+            id="tariffplan"
+            class="custom__btn custom__btn-tariff"
+          />
         </div>
         <div class="wrapper">
           <div class="custom__custom-item-option">
-            <h2 class="custom__custom-title">Main Options</h2>
+            <h2 class="custom__custom-title">Main options</h2>
             <div class="custom__item">
               <label for="link">Link</label>
               <input type="text" id="link" value="https://crocode.io/" />
@@ -95,12 +107,12 @@
             </div>
           </div>
           <div class="custom__custom-item-option">
-            <h2 class="custom__custom-title">Dots Options</h2>
+            <h2 class="custom__custom-title">Dots</h2>
             <div class="forms__wrappper">
               <div class="forms__item active" data-type="square">
                 <div class="forms__image-wrapper">
                   <img
-                    src="upload/загрузка.png"
+                    src="img/sample1.png"
                     alt="square"
                     class="forms__image"
                   />
@@ -109,7 +121,7 @@
               <div class="forms__item" data-type="dots">
                 <div class="forms__image-wrapper">
                   <img
-                    src="upload/загрузка (1).png"
+                    src="img/sample2.png"
                     alt="rounded"
                     class="forms__image"
                   />
@@ -118,7 +130,7 @@
               <div class="forms__item" data-type="rounded">
                 <div class="forms__image-wrapper">
                   <img
-                    src="upload/загрузка (2).png"
+                    src="img/sample3.png"
                     alt="classy"
                     class="forms__image"
                   />
@@ -127,7 +139,7 @@
               <div class="forms__item" data-type="classy">
                 <div class="forms__image-wrapper">
                   <img
-                    src="upload/загрузка (3).png"
+                    src="img/sample4.png"
                     alt="classy-rounded"
                     class="forms__image"
                   />
@@ -136,7 +148,7 @@
               <div class="forms__item" data-type="classy-rounded">
                 <div class="forms__image-wrapper">
                   <img
-                    src="upload/загрузка (4).png"
+                    src="img/sample5.png"
                     alt="extra-rounded"
                     class="forms__image"
                   />
@@ -144,11 +156,7 @@
               </div>
               <div class="forms__item" data-type="extra-rounded">
                 <div class="forms__image-wrapper">
-                  <img
-                    src="upload/загрузка (5).png"
-                    alt=""
-                    class="forms__image"
-                  />
+                  <img src="img/sample6.png" alt="" class="forms__image" />
                 </div>
               </div>
             </div>
@@ -158,7 +166,7 @@
               <input type="radio" name="dotsColor" id="gDotsColor" />
               <label for="gDotsColor">Gradient color</label>
             </div>
-            <div class="custom__item-inline">
+            <div class="custom__item-inline custom__item-inline-bottom">
               <div class="custom__item">
                 <label for="cpicker1"
                   >Color <span class="hidden hidden__el">1</span></label
@@ -180,32 +188,37 @@
                   max="360"
                 />
               </div>
+              <p
+                class="custom__item custom__item-alert custom__item-alert--dots"
+              >
+                <span class="warning"
+                  ><img src="img/warning.svg" alt="" />Warning -
+                </span>
+                We recommend to make your color darker
+              </p>
             </div>
-            <p class="custom__item-alert custom__item-alert--dots">
-              We recommend to make your color darker
-            </p>
           </div>
           <div class="custom__custom-item-option">
-            <h2 class="custom__custom-title">Corners Square Options</h2>
+            <h2 class="custom__custom-title">Corners square</h2>
             <div class="forms__wrappper">
               <div class="forms__item-square active" data-type="">
                 <div class="forms__image-wrapper">
-                  <img src="none.png" alt="square" class="forms__image" />
+                  <img src="img/none.png" alt="square" class="forms__image" />
                 </div>
               </div>
               <div class="forms__item-square" data-type="square">
                 <div class="forms__image-wrapper">
-                  <img src="1.png" alt="square" class="forms__image" />
+                  <img src="img/1.png" alt="square" class="forms__image" />
                 </div>
               </div>
               <div class="forms__item-square" data-type="dot">
                 <div class="forms__image-wrapper">
-                  <img src="2.png" alt="square" class="forms__image" />
+                  <img src="img/2.png" alt="square" class="forms__image" />
                 </div>
               </div>
               <div class="forms__item-square" data-type="extra-rounded">
                 <div class="forms__image-wrapper">
-                  <img src="3.png" alt="square" class="forms__image" />
+                  <img src="img/3.png" alt="square" class="forms__image" />
                 </div>
               </div>
             </div>
@@ -220,7 +233,7 @@
               <input type="radio" name="cornSquareColor" id="gCorSquareColor" />
               <label for="gCorSquareColor">Gradient color</label>
             </div>
-            <div class="custom__item-inline">
+            <div class="custom__item-inline custom__item-inline-bottom">
               <div class="custom__item">
                 <label for="squarecpicker1"
                   >Color <span class="hidden__el-square">1</span></label
@@ -233,27 +246,30 @@
                 >
                 <input type="color" id="squarecpicker2" />
               </div>
+              <p class="custom__item-alert custom__item-alert--corners-square">
+                <span class="warning">
+                  <img src="img/warning.svg" alt="" />Warning -
+                </span>
+                We recommend to make your color darker
+              </p>
             </div>
-            <p class="custom__item-alert custom__item-alert--corners-square">
-              We recommend to make your color darker
-            </p>
           </div>
           <div class="custom__custom-item-option">
-            <h2 class="custom__custom-title">Corners Dot Options</h2>
+            <h2 class="custom__custom-title">Corners dot</h2>
             <div class="forms__wrappper">
               <div class="forms__item-corndot active" data-type="">
                 <div class="forms__image-wrapper">
-                  <img src="none.png" alt="square" class="forms__image" />
+                  <img src="img/none.png" alt="square" class="forms__image" />
                 </div>
               </div>
               <div class="forms__item-corndot" data-type="square">
                 <div class="forms__image-wrapper">
-                  <img src="1.png" alt="square" class="forms__image" />
+                  <img src="img/1.png" alt="square" class="forms__image" />
                 </div>
               </div>
               <div class="forms__item-corndot" data-type="dot">
                 <div class="forms__image-wrapper">
-                  <img src="4.png" alt="square" class="forms__image" />
+                  <img src="img/4.png" alt="square" class="forms__image" />
                 </div>
               </div>
             </div>
@@ -268,7 +284,7 @@
               <input type="radio" name="cornDotColor" id="gCornDotColor" />
               <label for="gCornDotColor">Gradient color</label>
             </div>
-            <div class="custom__item-inline">
+            <div class="custom__item-inline custom__item-inline-bottom">
               <div class="custom__item">
                 <label for="dotscpicker"
                   >Color <span class="hidden__el-dot">1</span>
@@ -279,10 +295,13 @@
                 <label for="dotscpicker2" class="hidden__el-dot">Color 2</label>
                 <input type="color" id="dotscpicker2" />
               </div>
+              <p class="custom__item-alert custom__item-alert--corners-dots">
+                <span class="warning">
+                  <img src="img/warning.svg" alt="" />Warning -
+                </span>
+                We recommend to make your color darker
+              </p>
             </div>
-            <p class="custom__item-alert custom__item-alert--corners-dots">
-              We recommend to make your color darker
-            </p>
           </div>
           <div class="custom__custom-item-option">
             <h2 class="custom__custom-title">Background Style</h2>
@@ -292,7 +311,7 @@
               <input type="radio" name="backColor" id="gBackColor" />
               <label for="gBackColor">Gradient color</label>
             </div>
-            <div class="custom__item-inline">
+            <div class="custom__item-inline custom__item-inline-bottom">
               <div class="custom__item">
                 <label for="backcpicker"
                   >Color <span class="hidden__el-back">1</span>
@@ -305,26 +324,27 @@
                 >
                 <input type="color" id="backcpicker2" value="#ffffff" />
               </div>
+              <p class="custom__item-alert custom__item-alert--background">
+                <span class="warning">
+                  <img src="img/warning.svg" alt="" />Warning -
+                </span>
+                Make sure there is enough contrast to the darker foreground.
+              </p>
             </div>
-
-            <p class="custom__item-alert custom__item-alert--background">
-              Make sure there is enough contrast to the darker foreground.
-            </p>
           </div>
           <div class="custom__custom-item-option image-style">
             <h2 class="custom__custom-title">Image Style</h2>
             <div class="custom__item">
               <label for="marginImage">Margin</label>
-              <input
-                type="number"
-                id="marginImage"
-                value="5"
-                min="0"
-                max="10"
-              />
+              <input type="number" id="marginImage" value="0" max="10" />
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="notification">
+      <div class="notification__wrapper">
+        <p class="notification__text"></p>
       </div>
     </div>
     <script type="module" src="qrcode.js"></script>

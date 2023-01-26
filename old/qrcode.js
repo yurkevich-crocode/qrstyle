@@ -215,9 +215,33 @@ class QrCode {
           Object.values(this.hexToRgb(backColVal2))
         ) <= 2.5
       ) {
-        dotsAlert.style.display = "block";
+        dotsAlert.style.display = "flex";
       } else {
         dotsAlert.style.display = "none";
+      }
+
+      const cpicker1El = document.getElementById("cpicker1");
+      const cpicker2El = document.getElementById("cpicker2");
+      if (
+        this.contrast(
+          Object.values(this.hexToRgb(colorDotsVal1)),
+          Object.values(this.hexToRgb(backColVal))
+        ) <= 2.5
+      ) {
+        cpicker1El.classList.add("color-border");
+      } else {
+        cpicker1El.classList.remove("color-border");
+      }
+
+      if (
+        this.contrast(
+          Object.values(this.hexToRgb(colorDotsVal2)),
+          Object.values(this.hexToRgb(backColVal2))
+        ) <= 2.5
+      ) {
+        cpicker2El.classList.add("color-border");
+      } else {
+        cpicker2El.classList.remove("color-border");
       }
 
       //==================
@@ -245,9 +269,33 @@ class QrCode {
           Object.values(this.hexToRgb(backColVal2))
         ) <= 2.5
       ) {
-        cornersSquareAlert.style.display = "block";
+        cornersSquareAlert.style.display = "flex";
       } else {
         cornersSquareAlert.style.display = "none";
+      }
+
+      const squarecpicker1El = document.getElementById("squarecpicker1");
+      const squarecpicker2El = document.getElementById("squarecpicker2");
+      if (
+        this.contrast(
+          Object.values(this.hexToRgb(cornersSquare)),
+          Object.values(this.hexToRgb(backColVal))
+        ) <= 2.5
+      ) {
+        squarecpicker1El.classList.add("color-border");
+      } else {
+        squarecpicker1El.classList.remove("color-border");
+      }
+
+      if (
+        this.contrast(
+          Object.values(this.hexToRgb(colorCorSquareVal2)),
+          Object.values(this.hexToRgb(backColVal2))
+        ) <= 2.5
+      ) {
+        squarecpicker2El.classList.add("color-border");
+      } else {
+        squarecpicker2El.classList.remove("color-border");
       }
 
       //==================
@@ -275,9 +323,33 @@ class QrCode {
           Object.values(this.hexToRgb(backColVal2))
         ) <= 2.5
       ) {
-        cornersDotsAlert.style.display = "block";
+        cornersDotsAlert.style.display = "flex";
       } else {
         cornersDotsAlert.style.display = "none";
+      }
+
+      const cornersDots1El = document.getElementById("dotscpicker");
+      const cornersDots2El = document.getElementById("dotscpicker2");
+      if (
+        this.contrast(
+          Object.values(this.hexToRgb(colorCorDotsVal)),
+          Object.values(this.hexToRgb(backColVal))
+        ) <= 2.5
+      ) {
+        cornersDots1El.classList.add("color-border");
+      } else {
+        cornersDots1El.classList.remove("color-border");
+      }
+
+      if (
+        this.contrast(
+          Object.values(this.hexToRgb(colorCorDotsVal2)),
+          Object.values(this.hexToRgb(backColVal2))
+        ) <= 2.5
+      ) {
+        cornersDots2El.classList.add("color-border");
+      } else {
+        cornersDots2El.classList.remove("color-border");
       }
 
       if (
@@ -308,7 +380,48 @@ class QrCode {
       ) {
         backgroundAlert.style.display = "none";
       } else {
-        backgroundAlert.style.display = "block";
+        backgroundAlert.style.display = "flex";
+      }
+
+      const backcpicker = document.getElementById("backcpicker");
+      const backcpicker2 = document.getElementById("backcpicker2");
+
+      if (
+        this.contrast(
+          Object.values(this.hexToRgb(backColVal)),
+          Object.values(this.hexToRgb(colorCorDotsVal))
+        ) <= 1.5 &&
+        this.contrast(
+          Object.values(this.hexToRgb(backColVal)),
+          Object.values(this.hexToRgb(cornersSquare))
+        ) <= 1.5 &&
+        this.contrast(
+          Object.values(this.hexToRgb(backColVal)),
+          Object.values(this.hexToRgb(colorDotsVal1))
+        ) <= 1.5
+      ) {
+        backcpicker.classList.add("color-border");
+      } else {
+        backcpicker.classList.remove("color-border");
+      }
+
+      if (
+        this.contrast(
+          Object.values(this.hexToRgb(backColVal2)),
+          Object.values(this.hexToRgb(colorCorDotsVal2))
+        ) <= 1.5 &&
+        this.contrast(
+          Object.values(this.hexToRgb(backColVal2)),
+          Object.values(this.hexToRgb(colorCorSquareVal2))
+        ) <= 1.5 &&
+        this.contrast(
+          Object.values(this.hexToRgb(backColVal2)),
+          Object.values(this.hexToRgb(colorDotsVal2))
+        ) <= 1.5
+      ) {
+        backcpicker2.classList.add("color-border");
+      } else {
+        backcpicker2.classList.remove("color-border");
       }
 
       //==================
@@ -404,11 +517,15 @@ class QrCode {
     };
 
     img.src = "croco.svg";
-    const new_window = window.open("https://crocode.io/", "_blank");
+
     setTimeout(() => {
       globalQr.download({ name: "qr", extension: "png" });
-      new_window.close();
-    }, 5000);
+    }, 1000);
+
+    // const new_window = window.open("https://crocode.io/", "_blank");
+    // setTimeout(() => {
+    //   new_window.close();
+    // }, 5000);
   }
 
   getInputs() {
@@ -494,5 +611,44 @@ let glHeight;
 const save = document.getElementById("savebtn");
 
 save.addEventListener("click", () => {
-  qr.saveQr();
+  const notificationText = document.querySelector(".notification__text");
+  const notification = document.querySelector(".notification");
+  const notificationWrapper = document.querySelector(".notification__wrapper");
+  try {
+    qr.saveQr();
+    notification.classList.add("notification__active");
+    notificationWrapper.classList.remove("notification__error");
+    notificationWrapper.classList.add("notification__succes");
+    notificationText.textContent =
+      "Your QR-code has been successfully generated";
+    setTimeout(() => {
+      notification.classList.toggle("notification__active");
+    }, 4000);
+  } catch {
+    notificationWrapper.classList.remove("notification__succes");
+    notificationWrapper.classList.add("notification__error");
+    notificationText.textContent =
+      "An error occurred while generating the QR-code";
+    notification.classList.add("notification__active");
+    setTimeout(() => {
+      notification.classList.toggle("notification__active");
+    }, 4000);
+  }
+
+  save.disabled = true;
+  setTimeout(() => {
+    save.disabled = false;
+  }, 4000);
+});
+
+//other code
+const btnTraffik = document.getElementById("tariffplan");
+const modal = document.querySelector(".modal");
+btnTraffik.addEventListener("click", () => {
+  modal.classList.add("modal__active");
+  if (modal.classList.contains("modal__active")) {
+    const body = document.getElementById("body");
+    console.log(body);
+    body.style.overflow = "hidden";
+  }
 });

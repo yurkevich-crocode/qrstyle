@@ -1,8 +1,19 @@
+:root {
+  --border-color: #babfc3;
+  --default-white: #fff;
+}
+
+* {
+  font-family: "SF Pro Display";
+  font-size: 14px;
+  line-height: 20px;
+}
+
 @font-face {
   font-family: "SF Pro Display";
   src: local("SF Pro Display Medium"), local("SFProDisplay-Medium"),
-    url("SFProDisplay-Medium.woff2") format("woff2"),
-    url("SFProDisplay-Medium.woff") format("woff");
+    url("fonts/SFProDisplay-Medium.woff2") format("woff2"),
+    url("fonts/SFProDisplay-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -11,8 +22,8 @@
 @font-face {
   font-family: "SF Pro Display";
   src: local("SF Pro Display Bold"), local("SFProDisplay-Bold"),
-    url("SFProDisplay-Bold.woff2") format("woff2"),
-    url("SFProDisplay-Bold.woff") format("woff");
+    url("fonts/SFProDisplay-Bold.woff2") format("woff2"),
+    url("fonts/SFProDisplay-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -21,22 +32,16 @@
 @font-face {
   font-family: "SF Pro Display";
   src: local("SF Pro Display Regular"), local("SFProDisplay-Regular"),
-    url("SFProDisplay-Regular.woff2") format("woff2"),
-    url("SFProDisplay-Regular.woff") format("woff");
+    url("fonts/SFProDisplay-Regular.woff2") format("woff2"),
+    url("fonts/SFProDisplay-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
-* {
-  font-family: "SF Pro Display";
-  transition: 0.4s ease;
-  font-size: 14px;
-  line-height: 20px;
-}
-
 body {
   background-color: #f6f6f7;
+  margin: 0;
 }
 
 @media (min-width: 1367px) {
@@ -75,8 +80,8 @@ body {
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  background: #ffffff;
-  border: 1px solid #babfc3;
+  background: var(--default-white);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
 }
 
@@ -89,19 +94,22 @@ body {
 }
 
 .canvas__border {
-  border: 1px solid rgba(153, 150, 150, 0.348);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
 }
 
 .global-wrapper {
-  display: flex;
-  gap: 50px;
+  display: grid;
+
+  gap: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-@media (max-width: 991px) {
+@media (min-width: 991px) {
   .global-wrapper {
-    flex-direction: column;
+    grid-template-columns: 1fr 2fr;
   }
 }
 
@@ -110,27 +118,28 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 20px;
-  border: 1px solid #babfc3;
+  border: 1px solid var(--border-color);
   height: max-content;
-  padding: 46px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   border-radius: 8px;
   overflow: hidden;
 }
 
 #canvas canvas {
+  width: 100%;
   min-width: 250px !important;
-  max-width: 250px !important;
   min-height: 250px !important;
+  max-width: 250px !important;
   max-height: 250px !important;
   object-fit: cover;
-  width: 100%;
   overflow: hidden;
 }
 
 @media (min-width: 992px) {
   .canvas__wrapper {
     position: sticky;
-    top: 10px;
+    top: 20px;
     z-index: 10;
   }
 }
@@ -168,9 +177,18 @@ body {
   gap: 5px;
 }
 
+.custom__item-inline-bottom {
+  align-items: flex-end;
+}
+
 .custom__item-alert {
+  margin: 0;
+  display: flex;
+  align-items: center;
   display: none;
-  color: rgb(255, 166, 0);
+  flex-direction: row;
+  color: #6d7175;
+  padding-bottom: 10px;
 }
 
 .custom__btn:focus {
@@ -180,16 +198,29 @@ body {
 .custom__btn:hover {
   background-color: rgb(1, 95, 71);
 }
+
+.custom__btn-tariff:hover {
+  background-color: #666666;
+}
+
+.custom__btn-tariff:focus {
+  background-color: #666666;
+}
+
 input[type="color"] {
   width: 54px;
   height: 34px;
-  background: #ffffff;
-  border: 1px solid #babfc3;
+  background: var(--default-white);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
 }
 
+input[type="color"].color-border {
+  border: 1px solid red;
+}
+
 input[type="color"]::-webkit-color-swatch {
-  border: 1px solid #babfc3;
+  border: 1px solid var(--border-color);
   height: 20px;
   margin-left: 3.5px;
   margin-right: 3.5px;
@@ -207,10 +238,10 @@ input[type="color"]::-webkit-color-swatch {
 .drop__button {
   z-index: 1;
   padding: 8px 16px;
-  background: #fff;
+  background: var(--default-white);
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
-  border: 1px solid #babfc3;
+  border: 1px solid var(--border-color);
   cursor: pointer;
 }
 
@@ -234,10 +265,10 @@ input[type="number"],
 input[type="text"],
 select {
   padding: 6px 12px;
-  background: #ffffff;
+  background: var(--default-white);
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
-  border: 1px solid #babfc3;
+  border: 1px solid var(--border-color);
   outline: 0px;
 }
 
@@ -291,7 +322,7 @@ input#link {
   border: 2px dotted #8c9196;
   border-radius: 5px;
   color: #6d7175;
-  background-color: #ffffff;
+  background-color: var(--default-white);
   position: absolute;
   text-align: center;
 }
@@ -346,7 +377,7 @@ input#link {
 .forms__item,
 .forms__item-corndot,
 .forms__item-square {
-  border: 1px solid #babfc3;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
 }
 
@@ -386,7 +417,83 @@ input#link {
   background-color: #008060;
   padding: 8px;
   cursor: pointer;
-  color: #fff;
+  color: var(--default-white);
   transition: 0.4s ease;
+  width: 252px;
+}
+
+.custom__btn:disabled {
+  background-color: #474747;
+  cursor: no-drop;
+}
+
+.custom__btn-tariff {
+  background-color: #8c9196;
+}
+
+.warning {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #d72c0d;
+}
+
+.notification {
+  position: fixed;
+  top: 10px;
+  left: -100%;
+  transition: 1s ease-in-out;
+  z-index: 10;
+}
+
+.notification__wrapper {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.notification__succes {
+  background-color: #008060;
+}
+
+.notification__error {
+  background-color: #720000;
+}
+
+.notification__text {
+  color: var(--default-white);
+}
+
+.notification__active {
+  left: 10px;
+}
+
+.modal {
+  position: fixed;
+  overflow: hidden;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  top: 0;
   width: 100%;
+  height: 100vh;
+  background-color: #3c3c3c96;
+  z-index: 12;
+}
+
+.modal__active {
+  display: flex;
+}
+
+.modal__wrapper {
+  width: 80%;
+  height: 80%;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 30px 3px rgba(0, 0, 0, 0.368);
+}
+
+.modal__title {
+  font-size: 32px;
+  margin: 0;
 }
