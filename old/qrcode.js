@@ -554,6 +554,7 @@ class QrCode {
     }
 
     formItems.forEach((item) => {
+      item.style.cursor = "pointer";
       item.addEventListener("click", () => {
         formItems.forEach((el) => {
           el.classList.remove("active");
@@ -565,7 +566,8 @@ class QrCode {
     });
 
     cornesrsSquareItems.forEach((item) => {
-      item.addEventListener("click", (e) => {
+      item.style.cursor = "pointer";
+      item.addEventListener("click", () => {
         cornesrsSquareItems.forEach((el) => {
           el.classList.remove("active");
         });
@@ -576,7 +578,8 @@ class QrCode {
     });
 
     cornesrsDotsItems.forEach((item) => {
-      item.addEventListener("click", (e) => {
+      item.style.cursor = "pointer";
+      item.addEventListener("click", () => {
         cornesrsDotsItems.forEach((el) => {
           el.classList.remove("active");
         });
@@ -644,11 +647,23 @@ save.addEventListener("click", () => {
 //other code
 const btnTraffik = document.getElementById("tariffplan");
 const modal = document.querySelector(".modal");
+const modalCross = document.querySelector(".modal__cross");
+const modalBack = document.querySelector(".modal__background");
+const body = document.getElementById("body");
+
 btnTraffik.addEventListener("click", () => {
   modal.classList.add("modal__active");
   if (modal.classList.contains("modal__active")) {
-    const body = document.getElementById("body");
-    console.log(body);
     body.style.overflow = "hidden";
   }
+});
+
+modalCross.addEventListener("click", () => {
+  modal.classList.toggle("modal__active");
+  body.style.overflow = "unset";
+});
+
+modalBack.addEventListener("click", () => {
+  modal.classList.toggle("modal__active");
+  body.style.overflow = "unset";
 });
